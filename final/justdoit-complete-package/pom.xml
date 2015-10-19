@@ -6,6 +6,6 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   
-  <groupId>com.nike.justdoit.design</groupId>
-  <artifactId>justdoit-design-package</artifactId>
+  <groupId>com.nike.justdoit.complete</groupId>
+  <artifactId>justdoit-complete-package</artifactId>
 </project>

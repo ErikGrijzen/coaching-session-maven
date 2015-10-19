@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.nike.www.justdoit</groupId>
+    <artifactId>justdoit</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>com.nike.www.justdoit.design</groupId>
+  <artifactId>justdoit-design-package</artifactId>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+           <artifactId>maven-assembly-plugin</artifactId>
+           <version>2.4.1</version>
+           <configuration>
+               <descriptors>
+                   <descriptor>src/assembly/frontend-resources.xml</descriptor>
+               </descriptors>
+           </configuration>
+           <executions>
+               <execution>
+                   <id>make-assembly</id>
+                   <phase>initialize</phase>
+                   <goals>
+                       <goal>single</goal>
+                   </goals>
+                   <configuration>
+                       <appendAssemblyId>false</appendAssemblyId>
+                       <attach>false</attach>
+                       <outputDirectory>${project.build.directory}</outputDirectory>
+                       <finalName>frontend</finalName>
+                   </configuration>
+               </execution>
+           </executions>
+       </plugin>
+  	
+  		<plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>0.0.26</version>
+            <executions>
+                <execution>
+                    <id>install-node-and-npm</id>
+                    <goals>
+                        <goal>install-node-and-npm</goal>
+                    </goals>
+                    <configuration>
+                        <nodeVersion>v4.1.2</nodeVersion>
+                        <npmVersion>2.14.3</npmVersion>
+                        <workingDirectory>${project.build.directory}/frontend</workingDirectory>
+                        <downloadDirectory>${project.build.directory}/frontend</downloadDirectory>
+                        <installDirectory>${project.build.directory}/frontend</installDirectory>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>run frontend script (generate css)</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>npm</goal>
+                    </goals>
+                    <configuration>
+                        <arguments>install</arguments>
+                        <workingDirectory>${project.build.directory}/frontend</workingDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+  		
+  	</plugins>
+  
+  </build>
+</project>
